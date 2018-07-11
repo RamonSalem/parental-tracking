@@ -13,6 +13,8 @@ export class GoogleMapsComponent {
   map: any;
 
   markers:any[] = [];
+
+  iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
  
   constructor(public navCtrl: NavController) {
   }
@@ -37,7 +39,11 @@ export class GoogleMapsComponent {
   addMarker(){
     console.log("HERE");
     let here = {lat:-7.2064099, lng: -35.9206093};
-    let marker = new google.maps.Marker({position : here, map: this.map});
+    let marker = new google.maps.Marker(
+      {position : here,
+       map: this.map,
+       icon: '../../assets/imgs/marker1-resized2.png'
+      });
     this.markers.push(marker);
    /* let infoWindow = new google.maps.InfoWindow({
       content: '<h4>something</h4>'
