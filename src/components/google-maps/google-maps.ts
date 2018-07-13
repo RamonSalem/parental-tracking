@@ -9,22 +9,44 @@ declare var google;
 })
 export class GoogleMapsComponent {
  
+  //Mudar posição do marker a cada 3 segundos
+
   @ViewChild('map') mapElement: ElementRef;
   map: any;
 
   markers:any[] = [];
 
-  iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
+/*
+  coordinates: any[] = [
+    new google.maps.LatLng(-7.211282, -35.935128),
+    new google.maps.LatLng(-7.211198, -35.934862),
+    new google.maps.LatLng(-7.211070, -35.934551),
+    new google.maps.LatLng(-7.210910, -35.934304),
+    new google.maps.LatLng(-7.210740, -35.933950),
+    new google.maps.LatLng(-7.210655, -35.933703),
+    new google.maps.LatLng(-7.210527, -35.933456),
+    new google.maps.LatLng(-7.210506, -35.933209)
+  ]*/
+
+  coordinates: any[] = [
+    {lat : -7.211282, lng: -35.935128},
+    {lat : -7.211070, lng: -35.934551},
+    {lat : -7.210910, lng: -35.934304},
+    {lat : -7.210740, lng: -35.933950},
+    {lat : -7.210655, lng: -35.933703},
+    {lat : -7.210527, lng: -35.933456},
+    {lat : -7.210506, lng: -35.933209}
+  ]
  
   constructor(public navCtrl: NavController) {
   }
  
   ngOnInit(){
-    this.loadMap();
+    this.loadMap(this.coordinates[0]);
   }
  
-  loadMap(){
-    let latLng = new google.maps.LatLng(-7.2064099, -35.9206093);
+  loadMap(coordinates){
+    let latLng = new google.maps.LatLng(coordinates.lat, coordinates.lng);
  
     let mapOptions = {
       center: latLng,
@@ -37,8 +59,7 @@ export class GoogleMapsComponent {
   }
 
   addMarker(){
-    console.log("HERE");
-    let here = {lat:-7.2064099, lng: -35.9206093};
+    let here = this.coordinates[0];
     let marker = new google.maps.Marker(
       {position : here,
        map: this.map,
@@ -52,6 +73,30 @@ export class GoogleMapsComponent {
     google.maps.event.addListener(marker, 'click', () => {
       infoWindow.open(this.map, marker);
     });*/
+  }
+
+  addMarkerV2(coordinate){
+    let here = {lat:coordinate.lat, lng:coordinate.lng};
+    let marker = new google.maps.Marker(
+      {position : here,
+       map: this.map,
+       icon: '../../assets/imgs/marker1-resized2.png'
+      });
+    this.markers.push(marker);
+   /* let infoWindow = new google.maps.InfoWindow({
+      content: '<h4>something</h4>'
+    });
+    
+    google.maps.event.addListener(marker, 'click', () => {
+      infoWindow.open(this.map, marker);
+    });*/
+  }
+
+  makeAnimation(){
+    this.coordinates.forEach(coor=>{
+      this.addMarkerV2(coor);
+      this.deleteMarker();
+    })
   }
 
   deleteMarker(){

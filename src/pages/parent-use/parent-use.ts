@@ -8,7 +8,13 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
+
+ /*
+ Get the values of locations stored in the database and add the markers into the map
+ */
+@IonicPage({
+  name : 'page-parent-use'
+})
 @Component({
   selector: 'page-parent-use',
   templateUrl: 'parent-use.html',
@@ -17,6 +23,9 @@ export class ParentUsePage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
+
+  name : string;
+  childIdentifier : string;
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ParentUsePage');

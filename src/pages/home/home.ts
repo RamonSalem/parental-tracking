@@ -11,4 +11,12 @@ export class HomePage {
 
   }
 
+  pushPageKidsUse():void{
+    this.navCtrl.push('page-kids-use');
+  }
+
+  pushPageParentsUse():void{
+    this.navCtrl.push('page-parent-use');
+  }
+
 }
