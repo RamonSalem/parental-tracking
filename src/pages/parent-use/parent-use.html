@@ -18,19 +18,17 @@
     <ion-list>
         <ion-item>
           <ion-label color="primary">Name</ion-label>
-          <ion-input [(ngModel)]="name" placeholder="Your name"></ion-input>
+          <ion-input [(ngModel)]="name" placeholder="{{name}}"></ion-input>
         </ion-item>
         <ion-item>
             <ion-label color="primary">Child identifier</ion-label>
-            <ion-input [(ngModel)]="childIdentifier" placeholder="Child identifier"></ion-input>
+            <ion-input [(ngModel)]="childIdentifier" placeholder="{{childIdentifier}}"></ion-input>
         </ion-item>
+        
     </ion-list>
 
-    {{name}}
-    {{childIdentifier}}
+    <button ion-button full (click)="syncParentToChild()">Sync </button>
 
-    <button ion-button full>Sync</button>
+    <ion-icon name="heart"></ion-icon>
     
-    
-
 </ion-content>

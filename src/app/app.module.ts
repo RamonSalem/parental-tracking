@@ -12,6 +12,12 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { Geolocation } from '@ionic-native/geolocation';
 
 import { ComponentsModule } from '../components/components.module';
+import { ParentsProvider } from '../providers/parents/parents';
+import { ChildsProvider } from '../providers/childs/childs';
+import { LocationsProvider } from '../providers/locations/locations';
+import { EnviromentProvider } from '../providers/enviroment/enviroment';
+
+import { HttpModule } from '@angular/http';
 
 @NgModule({
   declarations: [
@@ -22,6 +28,7 @@ import { ComponentsModule } from '../components/components.module';
   imports: [
     BrowserModule,
     ComponentsModule,
+    HttpModule,
     IonicModule.forRoot(MyApp),
   ],
   bootstrap: [IonicApp],
@@ -34,7 +41,11 @@ import { ComponentsModule } from '../components/components.module';
     StatusBar,
     SplashScreen,
     Geolocation,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    ParentsProvider,
+    ChildsProvider,
+    LocationsProvider,
+    EnviromentProvider
   ]
 })
 export class AppModule {}
